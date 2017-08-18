@@ -1,0 +1,13 @@
+/* ==|== exercise styles =====================================================
+   Default styles used in this exercise
+   ========================================================================== */
+body{font-size: 16px; font-family: Arial; line-height: 1.6;}
+h1, .content{margin: 30px;}
+li {margin: 0 0 20px 0;}
+.thumbs img{border: 1px solid #ddd; margin-right: 10px;}
+
+/* ==|== primary styles =====================================================
+   Author:
+   ========================================================================== */
+.quoteify-more,.quoteify-less{color:#2c7ef0;}
+.quoteify-more:hover,.quoteify-less:hover{color:#1552a8;cursor:pointer;}

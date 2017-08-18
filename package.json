@@ -1,0 +1,63 @@
+{
+  "author": {
+    "name": "Adam Kucharik",
+    "email": "akucharik@gmail.com"
+  },
+  "description": "A JavaScript development exercise for U.S. News & World Report",
+  "homepage": "",
+  "keywords": [],
+  "license": "MIT",
+  "main": "scripts/scripts.js",
+  "unpkg": "scripts/scripts.min.js",
+  "name": "usn-js-exercise",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "nyc": {
+    "exclude": [
+      "**/libs/*.js",
+      "scripts",
+      "test"
+    ]
+  },
+  "config": {
+    "plugins": {
+      "outfile": "js/plugins.js",
+      "outfilemin": "js/plugins.min.js",
+      "sourcefile": "src/scripts/plugins"
+    },
+    "scripts": {
+      "outfile": "js/script.js",
+      "outfilemin": "js/script.min.js",
+      "sourcefile": "src/scripts/script.js"
+    }
+  },
+  "scripts": {
+    "build": "babel $npm_package_config_plugins_sourcefile --out-file $npm_package_config_plugins_outfile && babel $npm_package_config_scripts_sourcefile --out-file $npm_package_config_scripts_outfile",
+    "prebuild": "npm run lint && npm run test && npm run clean",
+    "postbuild": "npm run minify",
+    "build:dev": "babel $npm_package_config_plugins_sourcefile --out-file $npm_package_config_plugins_outfile --source-maps inline && babel $npm_package_config_scripts_sourcefile --out-file $npm_package_config_scripts_outfile --source-maps inline",
+    "prebuild:dev": "npm run lint && npm run test && npm run clean",
+    "clean": "del 'js/*.js'",
+    "env": "env",
+    "lint": "eslint src/scripts",
+    "minify": "uglifyjs $npm_package_config_plugins_outfile --compress --mangle --comments --ie8 --output $npm_package_config_plugins_outfilemin && uglifyjs $npm_package_config_scripts_outfile --compress --mangle --comments --ie8 --output $npm_package_config_scripts_outfilemin",
+    "test": "nyc mocha --reporter nyan --compilers js:babel-register --timeout 10000"
+  },
+  "version": "0.1.0",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-register": "^6.23.0",
+    "chai": "^3.5.0",
+    "del-cli": "^1.0.0",
+    "eslint": "^3.19.0",
+    "jsdom": "^10.1.0",
+    "jsdom-global": "^3.0.2",
+    "mocha": "^3.2.0",
+    "nyc": "^10.3.2",
+    "sinon": "^2.1.0",
+    "uglify-js": "^3.0.7"
+  }
+}
